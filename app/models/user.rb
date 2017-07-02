@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   has_many :assignments
   has_many :assigned_projects, through: :assignments, source: :project
+  has_many :cohort_users
+
   validates :name, presence: true
 
-  enum role: ['default', 'admin']
+  enum role: ['default', 'instructor']
 
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
@@ -16,5 +18,13 @@ class User < ApplicationRecord
 
     user.save
     user
+  end
+
+  def cohort
+    cohort_users.where(role: "student").first.cohort
+  end
+
+  def teaching
+    cohort_users.where(role: "instructor").first.cohort
   end
 end
