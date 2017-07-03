@@ -21,10 +21,10 @@ class User < ApplicationRecord
   end
 
   def cohort
-    cohort_users.where(role: "student").first.cohort
+    cohort_users.student_cohort
   end
 
   def teaching
-    cohort_users.where(role: "instructor").first.cohort
+    cohort_users.teaching_cohort
   end
 end
