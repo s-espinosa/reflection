@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :projects, only: [:new, :create]
+  resources :assignments, only: [:new, :create]
 
   get '/auth/:provider/callback', to: 'sessions#create', as: 'login'
 end

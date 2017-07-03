@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  enum role: ['default', 'instructor']
+  enum role: ['student', 'instructor']
 
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
@@ -26,5 +26,13 @@ class User < ApplicationRecord
 
   def teaching
     cohort_users.where(role: "instructor").first.cohort
+  end
+
+  def students
+    teaching.students
+  end
+
+  def teaching_projects
+    teaching.assigned_projects
   end
 end

@@ -1,0 +1,5 @@
+<%= form_for(@assignment) do |f| %>
+  <%= f.collection_select :project_id, @projects, :id, :name %>
+  <%= f.collection_check_boxes :user_id, @students, :id, :name %>
+  <%= f.submit %>
+<% end %>
