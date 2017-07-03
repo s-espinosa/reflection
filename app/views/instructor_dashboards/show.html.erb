@@ -1,7 +1,25 @@
 <h1><%= @user.name %></h1>
 
 <%= link_to "Create New Project", new_project_path %>
+<%= link_to "Assign Project", new_assignment_path %>
 
 <h2><%= @user.teaching.name %></h2>
+
+<h3>Assigned Projects</h3>
+
+<table>
+  <th>
+    <td>Name</td>
+  </th>
+  <% if @user.teaching %>
+    <% @user.teaching_projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
 
 
