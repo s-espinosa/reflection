@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
-    @students   = current_user.students
+    @students   = current_user.instructor_students
     @projects   = Project.all
   end
 

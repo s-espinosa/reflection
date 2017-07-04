@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702211535) do
+ActiveRecord::Schema.define(version: 20170703112302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,26 +22,34 @@ ActiveRecord::Schema.define(version: 20170702211535) do
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
-  create_table "cohort_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "cohort_id"
-    t.integer "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cohort_id"], name: "index_cohort_users_on_cohort_id"
-    t.index ["user_id"], name: "index_cohort_users_on_user_id"
-  end
-
   create_table "cohorts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "instructors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_instructors_on_cohort_id"
+    t.index ["user_id"], name: "index_instructors_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_students_on_cohort_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +67,8 @@ ActiveRecord::Schema.define(version: 20170702211535) do
 
   add_foreign_key "assignments", "projects"
   add_foreign_key "assignments", "users"
-  add_foreign_key "cohort_users", "cohorts"
-  add_foreign_key "cohort_users", "users"
+  add_foreign_key "instructors", "cohorts"
+  add_foreign_key "instructors", "users"
+  add_foreign_key "students", "cohorts"
+  add_foreign_key "students", "users"
 end

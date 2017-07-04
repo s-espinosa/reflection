@@ -4,7 +4,7 @@ describe 'An authenticated instructor' do
   it 'can see their class page' do
     cohort = Cohort.create(name: "1706-B")
     user   = User.create(name: "Sal", role: "instructor")
-    CohortUser.create(user: user, cohort: cohort, role: "instructor")
+    Instructor.create(user: user, cohort: cohort)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -17,7 +17,7 @@ describe 'An authenticated instructor' do
   it 'can create a new project' do
     cohort = Cohort.create(name: "1706-B")
     user   = User.create(name: "Sal", role: "instructor")
-    CohortUser.create(user: user, cohort: cohort, role: "instructor")
+    Instructor.create(user: user, cohort: cohort)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -33,11 +33,11 @@ describe 'An authenticated instructor' do
   it 'can assign a project' do
     cohort = Cohort.create(name: "1706-B")
     user   = User.create(name: "Sal", role: "instructor")
-    CohortUser.create(user: user, cohort: cohort, role: "instructor")
+    Instructor.create(user: user, cohort: cohort)
     student_1 = User.create(name: "Sam", role: "student")
     student_2 = User.create(name: "Mike", role: "student")
-    CohortUser.create(user: student_1, cohort: cohort, role: "student")
-    CohortUser.create(user: student_2, cohort: cohort, role: "student")
+    Student.create(user: student_1, cohort: cohort)
+    Student.create(user: student_2, cohort: cohort)
     Project.create(name: "Credit Check")
     Project.create(name: "BattleShip")
 

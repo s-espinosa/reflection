@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   has_many :assignments
   has_many :assigned_projects, through: :assignments, source: :project
-  has_many :cohort_users
+  has_one :student
+  has_one :cohort, through: :student
+  has_one :instructor
+  has_one :instructor_cohort, through: :instructor, source: :cohort
 
   validates :name, presence: true
 
@@ -20,19 +23,11 @@ class User < ApplicationRecord
     user
   end
 
-  def cohort
-    cohort_users.where(role: "student").first.cohort
+  def instructor_students
+    instructor_cohort.student_users
   end
 
-  def teaching
-    cohort_users.where(role: "instructor").first.cohort
-  end
-
-  def students
-    teaching.students
-  end
-
-  def teaching_projects
-    teaching.assigned_projects
+  def instructor_projects
+    instructor_cohort.assigned_projects
   end
 end
