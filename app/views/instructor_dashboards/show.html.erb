@@ -3,7 +3,7 @@
 <%= link_to "Create New Project", new_project_path %>
 <%= link_to "Assign Project", new_assignment_path %>
 
-<h2><%= @user.teaching.name %></h2>
+<h2><%= @user.instructor_cohort.name %></h2>
 
 <h3>Assigned Projects</h3>
 
@@ -11,8 +11,8 @@
   <th>
     <td>Name</td>
   </th>
-  <% if @user.teaching %>
-    <% @user.teaching_projects.each do |project| %>
+  <% if @user.instructor_cohort %>
+    <% @user.instructor_projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
       </tr>
