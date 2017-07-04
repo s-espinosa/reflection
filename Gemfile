@@ -18,7 +18,6 @@ gem 'omniauth-github'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'listen'
   gem 'pry'
 end
 
