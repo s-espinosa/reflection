@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_one :cohort, through: :student
   has_one :instructor
   has_one :instructor_cohort, through: :instructor, source: :cohort
+  has_many :reflection_responses
 
   validates :name, presence: true
 

@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get '/instructor-dashboard', to: 'instructor_dashboards#show', as: 'instructor_dashboard'
 
   resources :users, only: [:show]
-  resources :projects, only: [:new, :create]
   resources :assignments, only: [:new, :create]
+  resources :projects, only: [:new, :create] do
+    resource :reflection_responses, only: [:new, :create, :edit, :update]
+  end
 
   get '/auth/:provider/callback', to: 'sessions#create', as: 'login'
 end
