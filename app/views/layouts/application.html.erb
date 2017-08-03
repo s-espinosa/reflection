@@ -10,7 +10,9 @@
 
   <body>
     <nav>
-      <%= link_to "Log Out", logout_path %>
+      <% if current_user %>
+        <%= link_to "Log Out", logout_path %>
+      <% end %>
     </nav>
     <%= yield %>
   </body>
