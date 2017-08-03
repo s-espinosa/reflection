@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   private
   def dashboards
     if current_user.role == "instructor"
-      instructor_dashboard_path(@user)
+      instructor_dashboard_path
     else
       user_path(@user)
     end
