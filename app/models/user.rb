@@ -1,10 +1,8 @@
 class User < ApplicationRecord
   has_many :assignments
   has_many :assigned_projects, through: :assignments, source: :project
-  has_one :student
-  has_one :cohort, through: :student
-  has_one :instructor
-  has_one :instructor_cohort, through: :instructor, source: :cohort
+  belongs_to :cohort, required: false
+  belongs_to :instructor_cohort, class_name: "Cohort", required: false
   has_many :reflection_responses
 
   validates :name, presence: true

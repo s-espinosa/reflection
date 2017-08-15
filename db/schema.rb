@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728025806) do
+ActiveRecord::Schema.define(version: 20170815022816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,15 +26,6 @@ ActiveRecord::Schema.define(version: 20170728025806) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "instructors", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "cohort_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cohort_id"], name: "index_instructors_on_cohort_id"
-    t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -66,15 +57,6 @@ ActiveRecord::Schema.define(version: 20170728025806) do
     t.index ["user_id"], name: "index_reflection_responses_on_user_id"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "cohort_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cohort_id"], name: "index_students_on_cohort_id"
-    t.index ["user_id"], name: "index_students_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -86,17 +68,17 @@ ActiveRecord::Schema.define(version: 20170728025806) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cohort_id"
+    t.integer "instructor_cohort_id"
+    t.index ["cohort_id"], name: "index_users_on_cohort_id"
+    t.index ["instructor_cohort_id"], name: "index_users_on_instructor_cohort_id"
   end
 
   add_foreign_key "assignments", "projects"
   add_foreign_key "assignments", "users"
-  add_foreign_key "instructors", "cohorts"
-  add_foreign_key "instructors", "users"
   add_foreign_key "reflection_questions", "projects"
   add_foreign_key "reflection_questions", "prompts"
   add_foreign_key "reflection_responses", "projects"
   add_foreign_key "reflection_responses", "prompts"
   add_foreign_key "reflection_responses", "users"
-  add_foreign_key "students", "cohorts"
-  add_foreign_key "students", "users"
 end
