@@ -1,12 +1,12 @@
-class ReflectionResponsesController < ApplicationController
+class ResponsesController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
   end
 
   def create
     @project   = Project.find(params[:project_id])
-    responses = create_responses(params[:reflection_questions])
-    if ReflectionResponse.create(responses)
+    responses = create_responses(params[:questions])
+    if Response.create(responses)
       redirect_to user_path(current_user)
     else
       flash[:error] = "Something went wrong. Try again."

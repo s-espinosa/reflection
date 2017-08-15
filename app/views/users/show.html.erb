@@ -14,9 +14,9 @@
       </td>
       <td>
         <% if project.user_response?(@user) %>
-          <%= link_to "Update", edit_project_reflection_responses_path(project) %>
+          <%= link_to "Update", edit_project_responses_path(project) %>
         <% else %>
-          <%= link_to "Create", new_project_reflection_responses_path(project) %>
+          <%= link_to "Create", new_project_responses_path(project) %>
         <% end %>
       </td>
     </tr>
