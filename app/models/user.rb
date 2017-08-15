@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :assigned_projects, through: :assignments, source: :project
   belongs_to :cohort, required: false
   belongs_to :instructor_cohort, class_name: "Cohort", required: false
-  has_many :reflection_responses
+  has_many :responses
 
   validates :name, presence: true
 

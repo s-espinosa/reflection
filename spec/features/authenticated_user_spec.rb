@@ -60,12 +60,12 @@ describe "An authenticated user" do
     visit user_path(student)
     click_on "Create"
 
-    fill_in "reflection_questions[#{credit.prompts.first.id}]", with: "first"
-    fill_in "reflection_questions[#{credit.prompts.second.id}]", with: "second"
+    fill_in "questions[#{credit.prompts.first.id}]", with: "first"
+    fill_in "questions[#{credit.prompts.second.id}]", with: "second"
     click_on "Create"
 
-    expect(ReflectionResponse.first.response).to eq("first")
-    expect(ReflectionResponse.second.response).to eq("second")
+    expect(Response.first.response).to eq("first")
+    expect(Response.second.response).to eq("second")
     expect(page).to_not have_content("Create")
     expect(page).to have_content("Update")
   end
@@ -75,18 +75,18 @@ describe "An authenticated user" do
     credit   = student.assigned_projects.create(name: "Credit Check")
     prompt_1 = credit.prompts.create(prompt: "What did you learn from this project?")
     prompt_2 = credit.prompts.create(prompt: "What did you struggle with this project?")
-    student.reflection_responses.create(prompt: prompt_1, project: credit, response: "first")
+    student.responses.create(prompt: prompt_1, project: credit, response: "first")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(student)
 
     visit user_path(student)
     click_on "Update"
 
-    fill_in "reflection_questions[#{credit.prompts.second.id}]", with: "second"
+    fill_in "questions[#{credit.prompts.second.id}]", with: "second"
     click_on "Update"
 
-    expect(ReflectionResponse.find_by(prompt: prompt_1).response).to eq("first")
-    expect(ReflectionResponse.find_by(prompt: prompt_2).response).to eq("second")
+    expect(Response.find_by(prompt: prompt_1).response).to eq("first")
+    expect(Response.find_by(prompt: prompt_2).response).to eq("second")
     expect(page).to_not have_content("Create")
     expect(page).to have_content("Update")
   end

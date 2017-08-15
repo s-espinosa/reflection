@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815022816) do
+ActiveRecord::Schema.define(version: 20170815030535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,23 +38,23 @@ ActiveRecord::Schema.define(version: 20170815022816) do
     t.string "prompt"
   end
 
-  create_table "reflection_questions", force: :cascade do |t|
+  create_table "questions", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "prompt_id"
-    t.index ["project_id"], name: "index_reflection_questions_on_project_id"
-    t.index ["prompt_id"], name: "index_reflection_questions_on_prompt_id"
+    t.index ["project_id"], name: "index_questions_on_project_id"
+    t.index ["prompt_id"], name: "index_questions_on_prompt_id"
   end
 
-  create_table "reflection_responses", force: :cascade do |t|
+  create_table "responses", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "project_id"
     t.bigint "prompt_id"
     t.string "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_reflection_responses_on_project_id"
-    t.index ["prompt_id"], name: "index_reflection_responses_on_prompt_id"
-    t.index ["user_id"], name: "index_reflection_responses_on_user_id"
+    t.index ["project_id"], name: "index_responses_on_project_id"
+    t.index ["prompt_id"], name: "index_responses_on_prompt_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(version: 20170815022816) do
 
   add_foreign_key "assignments", "projects"
   add_foreign_key "assignments", "users"
-  add_foreign_key "reflection_questions", "projects"
-  add_foreign_key "reflection_questions", "prompts"
-  add_foreign_key "reflection_responses", "projects"
-  add_foreign_key "reflection_responses", "prompts"
-  add_foreign_key "reflection_responses", "users"
+  add_foreign_key "questions", "projects"
+  add_foreign_key "questions", "prompts"
+  add_foreign_key "responses", "projects"
+  add_foreign_key "responses", "prompts"
+  add_foreign_key "responses", "users"
 end
