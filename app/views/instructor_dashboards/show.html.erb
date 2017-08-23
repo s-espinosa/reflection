@@ -1,25 +1,26 @@
-<h1><%= @user.name %></h1>
+<div class="container">
+  <main>
+    <h1><%= @user.name %></h1>
 
-<%= link_to "Create New Project", new_project_path %>
-<%= link_to "Assign Project", new_assignment_path %>
+    <a href="<%= new_project_path %>"><div class="button"><p>CREATE NEW PROJECT</p></div></a>
 
-<h2><%= @user.instructor_cohort.name %></h2>
+    <a href="<%= new_assignment_path %>"><div class="button"><p>ASSIGN PROJECT</p></div></a>
 
-<h3>Assigned Projects</h3>
+    <h2><%= @user.instructor_cohort.name if @user.instructor_cohort %></h2>
 
-<table>
-  <th>
-    <td>Name</td>
-  </th>
-  <% if @user.instructor_cohort %>
-    <% @user.instructor_projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-      </tr>
-    <% end %>
-  <% end %>
+    <h3>Assigned Projects</h3>
 
-</table>
-
-
-
+    <table>
+      <th>
+        <td>Name</td>
+      </th>
+      <% if @user.instructor_cohort %>
+        <% @user.instructor_projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </main>
+</div>

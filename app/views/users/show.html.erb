@@ -1,24 +1,28 @@
-<h1><%= @user.name %></h1>
+<div class="container">
+  <main>
+    <h1><%= @user.name %></h1>
 
-<h2>Assignments</h2>
+    <h2>Assignments</h2>
 
-<table>
-  <th>
-    <td>Name</td>
-    <td>Reflection</td>
-  </th>
-  <% @user.assigned_projects.each do |project| %>
-    <tr>
-      <td>
-        <%= project.name %>
-      </td>
-      <td>
-        <% if project.user_response?(@user) %>
-          <%= link_to "Update", edit_project_responses_path(project) %>
-        <% else %>
-          <%= link_to "Create", new_project_responses_path(project) %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+    <table>
+      <th>
+        <td>Name</td>
+        <td>Reflection</td>
+      </th>
+      <% @user.assigned_projects.each do |project| %>
+        <tr>
+          <td>
+            <%= project.name %>
+          </td>
+          <td>
+            <% if project.user_response?(@user) %>
+              <%= link_to "Update", edit_project_responses_path(project) %>
+            <% else %>
+              <%= link_to "Create", new_project_responses_path(project) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </main>
+</div>

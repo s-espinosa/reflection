@@ -1,5 +1,11 @@
-<%= form_for(@project) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <main>
+    <h1>Create a Project</h1>
+
+    <%= form_for(@project) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit %>
+    <% end %>
+  </main>
+</div>

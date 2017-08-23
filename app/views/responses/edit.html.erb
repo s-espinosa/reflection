@@ -1,9 +1,13 @@
-<h1><%= @project.name %></h1>
+<div class="container">
+  <main>
+    <h1><%= @project.name %></h1>
 
-<%= form_tag "/projects/#{@project.id}/responses" do %>
-  <% @project.questions.each do |question| %>
-    <%= label_tag("questions[#{question.prompt_id}]", question.prompt.prompt) %><br />
-    <%= text_area_tag("questions[#{question.prompt_id}]", @project.safe_response(@current_user, question.prompt), cols: "120", rows: "20") %><br />
-  <% end %>
-  <%= submit_tag "Update" %>
-<% end %>
+    <%= form_tag "/projects/#{@project.id}/responses" do %>
+      <% @project.questions.each do |question| %>
+        <%= label_tag("questions[#{question.prompt_id}]", question.prompt.prompt) %><br />
+        <%= text_area_tag("questions[#{question.prompt_id}]", @project.safe_response(@current_user, question.prompt), cols: "120", rows: "20") %><br />
+      <% end %>
+      <%= submit_tag "Update" %>
+    <% end %>
+  </main>
+</div>
