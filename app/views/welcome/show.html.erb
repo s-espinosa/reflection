@@ -1,5 +1,11 @@
-<% if current_user %>
-  <h1>Welcome, <%= current_user.name %>.</h1>
-<% else %>
-  <%= link_to "Log in with GitHub", '/auth/github' %>
-<% end %>
+<div class="welcome">
+  <% if current_user %>
+    <h1>Welcome, <%= current_user.name %>.</h1>
+  <% else %>
+    <a href="/auth/github">
+      <div class="button">
+        <p>LOG IN WITH GITHUB</p>
+      </div>
+    </a>
+  <% end %>
+</div>
