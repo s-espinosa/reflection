@@ -6,13 +6,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript" src="//fast.fonts.net/jsapi/b299b159-8854-4490-9537-f0d06d9babb7.js"></script>
   </head>
 
   <body>
     <nav>
-      <% if current_user %>
-        <%= link_to "Log Out", logout_path %>
-      <% end %>
+      <div class="nav-left">
+        <%= image_tag "logo.png", class: "logo", alt: "Turing School of Software & Design" %>
+      </div>
+      <div class="nav-right">
+        <% if current_user %>
+          <%= link_to "LOG OUT", logout_path %>
+        <% else %>
+          <%= link_to "LOG IN", "/auth/github" %>
+        <% end %>
+      </div>
     </nav>
     <%= yield %>
   </body>

@@ -1,0 +1,128 @@
+$primary-gray-0: #2b2b2b;
+$primary-gray-1: #4d4d4f;
+$primary-gray-2: #6d6e71;
+$primary-gray-3: #939598;
+$primary-gray-4: #bcbec0;
+$primary-blue-0: #12f1fc;
+$secondary-blue-0: #036575;
+$secondary-blue-1: #0492a5;
+$secondary-blue-2: #05c2d1;
+$secondary-red-0: #9b0428;
+$secondary-red-1: #cc193b;
+$secondary-red-2: #ef3852;
+$secondary-orange-0: #c67b02;
+$secondary-orange-1: #e0990a;
+$secondary-orange-2: #f9ae06;
+$text:'Helvetica Neue LT W01_41488878';
+$headers:'Helvetica Neue LT W01_85 Heavy';
+
+html {
+  width: 100%;
+  height: 100%;
+
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: $text;
+    color: $primary-gray-0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+  font-family: $headers;
+}
+
+.welcome {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $primary-gray-0;
+  background: url("/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: $primary-gray-4;
+
+  a {
+    color: $primary-gray-4;
+  }
+}
+
+nav {
+  background: $primary-gray-0;
+  font-family: $headers;
+  padding: 15px;
+  color: $primary-gray-4;
+  display: flex;
+  justify-content: space-between;
+
+  .nav-left {
+    display: flex;
+
+    .logo {
+      height: 40px;
+      align-self: flex-start;
+    }
+  }
+
+  .nav-right {
+    display: flex;
+
+    a {
+      color: white;
+      text-decoration: none;
+      align-self: flex-end;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 1000px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+select {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+
+
+input[type=submit] {
+  background: $primary-blue-0;
+  padding: 15px 30px;
+  color: $secondary-blue-0;
+  font-size: 20px;
+  font-family: $headers;
+  border: none;
+}
+
+.button {
+  background: $primary-blue-0;
+  padding: 15px 30px;
+  color: $secondary-blue-0;
+  display: inline-block;
+  font-family: $headers;
+  font-size: 0.8em;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
