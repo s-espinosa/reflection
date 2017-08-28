@@ -19,8 +19,9 @@ describe 'An authenticated instructor' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
+
     visit instructor_dashboard_path(user)
-    click_on "Create New Project"
+    click_on "CREATE NEW PROJECT"
     fill_in 'project[name]', with: "Credit Check"
     click_on 'Create Project'
 
@@ -39,7 +40,7 @@ describe 'An authenticated instructor' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit instructor_dashboard_path(user)
-    click_on "Assign Project"
+    click_on "ASSIGN PROJECT"
     select "Credit Check", from: "assignment[project_id]"
     check "Mike"
     click_on "Create Assignment"

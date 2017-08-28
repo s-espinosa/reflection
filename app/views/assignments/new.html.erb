@@ -1,10 +1,16 @@
 <div class="container">
   <main>
     <h1>Make an Assignment</h1>
-    <%= form_for(@assignment) do |f| %>
-      <%= f.collection_select :project_id, @projects, :id, :name %>
-      <%= f.collection_check_boxes :user_id, @students, :id, :name %><br><br>
-      <%= f.submit %>
+    <% if @projects.empty? %>
+      <h2>Please create projects.</h2>
+    <% elsif @students.empty? %>
+      <h2>Please ensure you are assigned to a cohort, and add students to your cohort.</h2>
+    <% else %>
+      <%= form_for(@assignment) do |f| %>
+        <%= f.collection_select :project_id, @projects, :id, :name %>
+        <%= f.collection_check_boxes :user_id, @students, :id, :name %><br><br>
+        <%= f.submit %>
+      <% end %>
     <% end %>
   </main>
 </div>
